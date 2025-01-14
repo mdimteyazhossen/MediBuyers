@@ -1,11 +1,14 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Navber from '../component/Navber'
 
 const Layout = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+    return (
+        <div>
+            <Navber />
+            <Outlet />
+        </div>
+    )
 }
 
 export default Layout
