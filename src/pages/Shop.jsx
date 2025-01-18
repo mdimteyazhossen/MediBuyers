@@ -1421,10 +1421,10 @@ const Shop = () => {
                 {/* foot */}
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
-                        <th></th>
+                        <th className='text-center'>Medicine</th>
+                        <th className='text-center'>Disclaimer</th>
+                        <th className='text-center'>Favorite Color</th>
+                        <th className='text-center'>Action</th>
                     </tr>
                 </tfoot>
             </table>
