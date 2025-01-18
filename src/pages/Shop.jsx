@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaEye } from "react-icons/fa";
+import DetailsModal from '../component/DetailsModal';
 
 
 const Shop = () => {
@@ -1373,7 +1374,16 @@ const Shop = () => {
             countInStock: 100,
         },
     ]
-    console.log(medicineData)
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [medicine , setDetailsData] = useState([]);
+    const openModal =(e)=>{
+        setModalOpen(true);
+        setDetailsData(e);
+    }
+    const closeModal =() =>{
+        setModalOpen(false);
+    }
+
     return (
         <div className="overflow-x-auto lg:w-4/5 mx-auto">
             <table className="table">
@@ -1413,7 +1423,7 @@ const Shop = () => {
                             <td className='text-center'>{medicine.price}bdt / {medicine.price / 100}$</td>
                             <th className='grid gap-2'>
                                 <button className="btn w-full bg-gray-300">Select</button>
-                                <button className='btn w-full bg-gray-300'><FaEye /></button>
+                                <button onClick={()=>openModal(medicine)} className='btn w-full bg-gray-300'><FaEye /></button>
                             </th>
                         </tr>
                     ))}
@@ -1428,6 +1438,8 @@ const Shop = () => {
                     </tr>
                 </tfoot>
             </table>
+
+            <DetailsModal isOpen={isModalOpen} closeModal={closeModal} medicine={medicine}/>
         </div>
         // <div>
         //     {medicineData.map(data =>
