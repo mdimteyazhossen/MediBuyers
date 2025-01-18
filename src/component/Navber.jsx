@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Navber = () => {
     const mainLink = <Link to='/' className="btn btn-ghost text-xl">MediBuyers</Link>
     const navLink = <>
-        <li><a>Home</a></li>
-        <li><a>Shop</a></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/shop'>Shop</NavLink></li>
         <li>
             <details>
                 <summary>Language</summary>
