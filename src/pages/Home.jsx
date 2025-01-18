@@ -1,10 +1,14 @@
 import React from 'react'
 import Slider from '../component/Slider'
+import Category from '../component/Category'
+import Uploadprescription from '../component/Uploadprescription'
 
 const Home = () => {
   return (
-    <div>
+    <div className='grid gap-20'>
       <Slider/>
+      <Uploadprescription/>
+      <Category/>
     </div>
   )
 }
