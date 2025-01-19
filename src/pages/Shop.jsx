@@ -1086,8 +1086,8 @@ const Shop = () => {
         .then(data =>{
             setMedicineData(data);
             setLoading(false);
-        }, [])
-    })
+        })
+    },[])
     const openModal = (e) => {
         setModalOpen(true);
         setDetailsData(e);

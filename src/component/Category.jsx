@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Category = () => {
   const categoryData = [
@@ -114,10 +115,10 @@ const Category = () => {
       <h1 className='text-3xl font-bold text-center'>Shop By Category</h1>
       <div className='flex gap-2 flex-wrap w-4/5 mx-auto justify-center'>
         {categoryData && categoryData.map((category, index) => (
-          <div id={index} className='border-2 w-36 h-42'>
+          <Link to={`/category/${category.category}`} id={index} className='border-2 w-36 h-42'>
             <img src={category.image} alt="" className='h-32 w-36' />
             <p className='text-sm text-center font-bold'>{category.category}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
