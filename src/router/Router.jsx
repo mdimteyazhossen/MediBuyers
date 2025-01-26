@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Shop from "../pages/Shop";
 import CategoryData from "../pages/CategoryData";
 import Login from "../pages/Login";
+import Signup from "../pages/Signup";
   
 
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         {
             path:'login',
             element:<Login/>
+        },
+        {
+            path:'signup',
+            element:<Signup/>
         },
         {
             path:'/category/:category',
