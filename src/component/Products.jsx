@@ -5,11 +5,13 @@ import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxios from '../hooks/useAxios';
+import useCart from '../hooks/useCart';
 const Products = ({ categorydata }) => {
     const { user } = useAuth();
     const axiosSecure = useAxios();
     const [isModalOpen, setModalOpen] = useState(false);
     const [medicine, setDetailsData] = useState([]);
+    const [ ,refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
     const openModal = (e) => {
@@ -19,6 +21,7 @@ const Products = ({ categorydata }) => {
     const closeModal = () => {
         setModalOpen(false);
     }
+    console.log(user.email)
     const handleAddToCart = medicine => {
         if (user && user.email) {
             const cartItem = {
@@ -26,7 +29,8 @@ const Products = ({ categorydata }) => {
                 email: user.email,
                 drugName: medicine.drugName,
                 manufacturer: medicine.manufacturer,
-                price: medicine.price
+                price: medicine.price,
+                quantity:1
             }
             axiosSecure.post('/carts', cartItem)
                 .then(res => {
@@ -38,6 +42,7 @@ const Products = ({ categorydata }) => {
                             showConfirmButton: false,
                             timer: 2000
                         });
+                        refetch();
                     }
                 })
 
@@ -96,7 +101,7 @@ const Products = ({ categorydata }) => {
                             </td>
                             <td className='text-center'>{medicine.price}bdt / {medicine.price / 100}$</td>
                             <th className='grid gap-2'>
-                                <button onClick={() => handleAddToCart(medicine)} className="btn w-full bg-gray-300">Select</button>
+                                <button onClick={()=>handleAddToCart(medicine)} className="btn w-full bg-gray-300">Select</button>
                                 <button onClick={() => openModal(medicine)} className='btn w-full bg-gray-300'><FaEye /></button>
                             </th>
                         </tr>
