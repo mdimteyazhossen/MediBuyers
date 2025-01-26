@@ -1,31 +1,38 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../provider/AuthProvider';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../hooks/useAxiosPublic';
+import SocialLogin from '../component/SocialLogin';
 
 const Signup = () => {
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const {createuser} = useContext(AuthContext);
+  const { createuser } = useContext(AuthContext);
   const onSubmit = (data) => {
     createuser(data.email, data.password)
-    .then(result => {
-      console.log(result.user)
-    })
-  } 
+      .then(result => {
+        console.log(result.user)
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          role: data.role
+        }
+        axiosPublic.post('/users', userInfo)
+          .then(res => {
+            if (res.data.insertedId) {
+              navigate('/')
+            }
+          })
+      })
+  }
 
-  // const handleRegister = e => {
-  //   e.preventDefault();
-  //   const from = e.target;
-  //   const email = from.email.value;
-  //   const password = from.password.value;
-  //   const name = from.name.value;
-  //   console.log(email, password, name)
 
-  // }
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -56,19 +63,32 @@ const Signup = () => {
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input type="password" placeholder="password" className="input input-bordered" required name='password' {...register("password", { required: true,minLength:6, pattern:/(?=.*[A-Z])(?=.*[!@#$%&*])(?=.*[0-9])(?=.*[a-z])/ })} />
-              {errors.password ?.type === 'required' && <p className='text-red-600'>Password is required</p>}
-              {errors.password ?.type === 'minLength' && <p className='text-red-600'>Password must be 6 characters.</p>}
-              {errors.password ?.type === 'pattern' && <p className='text-red-600'>Password must be 6 characters and one uppercase and one lowercase and one number and one spcial character.</p>}
+              <input type="password" placeholder="password" className="input input-bordered" required name='password' {...register("password", { required: true, minLength: 6, pattern: /(?=.*[A-Z])(?=.*[!@#$%&*])(?=.*[0-9])(?=.*[a-z])/ })} />
+              {errors.password?.type === 'required' && <p className='text-red-600'>Password is required</p>}
+              {errors.password?.type === 'minLength' && <p className='text-red-600'>Password must be 6 characters.</p>}
+              {errors.password?.type === 'pattern' && <p className='text-red-600'>Password must be 6 characters and one uppercase and one lowercase and one number and one spcial character.</p>}
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
               </label>
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Role</span>
+              </label>
+              <select className="select select-bordered" name='role' {...register("role", { required: true })}>
+                <option value="">Select Role</option>
+                <option value="seller">Seller</option>
+                <option value="user">User</option>
+              </select>
+              {errors.role && <span>This field is required</span>}
+            </div>
+
             <div className="form-control mt-6">
               <input className="btn btn-primary" type='submit' value='Sign Up'></input>
             </div>
           </form>
           <p><small>Already have an account? <Link to='/login' className='text-red-700 font-bold'>Please login!</Link></small></p>
+          <SocialLogin />
         </div>
       </div>
     </div>
