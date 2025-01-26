@@ -1,19 +1,40 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = e => {
     e.preventDefault();
-    const from = e.target;
-    const email = from.email.value;
-    const password = from.password.value;
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
     // console.log(email , password)
     signIn(email, password)
-    .then(result =>{
-      console.log(result.user)
-    })
+      .then(result => {
+        Swal.fire({
+          title: "User login successfully.",
+          showClass: {
+            popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+          },
+          hideClass: {
+            popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+          }
+        });
+        navigate(from, { replace: true })
+      })
   }
   return (
     <div className="hero bg-base-200 min-h-screen">

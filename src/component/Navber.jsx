@@ -110,7 +110,7 @@ const Navber = () => {
                     </div>
                     {user ?
                         <>
-                            <a className="btn">Logout</a>
+                            <a className="btn" onClick={handleLogOut}>Logout</a>
                         </> :
                         <>
                             <a className="btn">Join Us</a>
