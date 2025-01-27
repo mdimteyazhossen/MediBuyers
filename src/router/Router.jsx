@@ -12,6 +12,7 @@ import Secret from "../pages/Secret";
 import Dashboard from "../layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
+import AdminRoute from "./AdminRoute";
   
 
 
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
         },
         {
             path:'manageusers',
-            element:<ManageUsers/>
+            element:<AdminRoute><ManageUsers/></AdminRoute>
         },
         
       ]

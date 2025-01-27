@@ -21,7 +21,6 @@ const Products = ({ categorydata }) => {
     const closeModal = () => {
         setModalOpen(false);
     }
-    console.log(user.email)
     const handleAddToCart = medicine => {
         if (user && user.email) {
             const cartItem = {
