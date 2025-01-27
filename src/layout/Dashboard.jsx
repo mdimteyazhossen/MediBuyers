@@ -20,6 +20,9 @@ const Dashboard = () => {
               <li>
                 <NavLink to='/dashboard/checkout'>My Checkout</NavLink>
               </li>
+              <li>
+                <NavLink to='/dashboard/managemedicine'>Manage Medicine</NavLink>
+              </li>
             </>}
           {isSeller &&
             <>

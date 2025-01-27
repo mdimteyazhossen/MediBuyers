@@ -13,6 +13,7 @@ import Dashboard from "../layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import ManageMedicine from "../pages/Dashboard/ManageMedicine";
   
 
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         {
             path:'manageusers',
             element:<AdminRoute><ManageUsers/></AdminRoute>
+        },
+        {
+            path:'managemedicine',
+            element:<ManageMedicine/>
         },
         
       ]
