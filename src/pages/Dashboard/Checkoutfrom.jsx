@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAxios from './../../hooks/useAxios'
 import useCart from './../../hooks/useCart'
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 const Checkoutfrom = () => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
@@ -84,6 +85,10 @@ const Checkoutfrom = () => {
 
 
     }
+    const navigate = useNavigate()
+    const handlePay=()=>{
+        navigate('/dashboard/invoice')
+    }
     return (
         <form onSubmit={handleSubmit}>
             <CardElement
@@ -102,7 +107,7 @@ const Checkoutfrom = () => {
                     },
                 }}
             />
-            <button type="submit" className="btnbtn-sm bg-gray-600 text-white my-4 py-2 px-6" disabled={!stripe || !clientSecret}>
+            <button onClick={handlePay} type="submit" className="btnbtn-sm bg-gray-600 text-white my-4 py-2 px-6" disabled={!stripe || !clientSecret}>
                 Pay
             </button>
             <p className="text-red-600">{error}</p>

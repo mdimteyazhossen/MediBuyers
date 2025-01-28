@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import SocialLogin from '../component/SocialLogin';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
   const axiosPublic = useAxiosPublic();
@@ -25,7 +26,14 @@ const Signup = () => {
         }
         axiosPublic.post('/users', userInfo)
           .then(res => {
-            if (res.inserteds.dataId) {
+            if (res.inserted.dataId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
               navigate('/')
             }
           })
@@ -81,6 +89,16 @@ const Signup = () => {
                 <option value="user">User</option>
               </select>
               {errors.role && <span>This field is required</span>}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Profile Image</span>
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                className="input input-bordered"
+              />
             </div>
 
             <div className="form-control mt-6">

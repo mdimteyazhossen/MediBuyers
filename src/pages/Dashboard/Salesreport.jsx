@@ -13,7 +13,7 @@ const SalesReport = () => {
 
   // Fetch sales data (mocking API call here)
   useEffect(() => {
-    fetch("https://y-pearl-nu.vercel.app/payments") // Replace with your API endpoint
+    fetch("http://localhost:5000/payments") // Replace with your API endpoint
       .then((res) => res.json())
       .then((data) => setSalesData(data));
   }, []);

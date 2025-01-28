@@ -8,10 +8,12 @@ import UseSeller from "../hooks/UseSeller";
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   // const isAdmin = false;
-  const [ isSeller ] = UseSeller();
+  const [isSeller] = UseSeller();
   return (
     <div className="flex">
-      <div className="w-64 min-h-screen bg-gray-300 hidden lg:block">
+      <div className="w-64 min-h-screen bg-gray-300 py-20 ">
+        <img src="https://i.ibb.co.com/CM47mvS/Screenshot-2025-01-28-144553.png" alt=""  className="rounded-full w-20 h-20 mx-auto"/>
+        <h2 className="text-4xl font-bold text-center py-3">MediBuyers </h2>
         <ul className="menu">
           {isAdmin &&
             <>
@@ -26,9 +28,6 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to='/dashboard/salesreport'>Sales Report</NavLink>
-              </li>
-              <li>
-                <NavLink to='/dashboard/invoice'>Invoice</NavLink>
               </li>
             </>}
           {isSeller &&

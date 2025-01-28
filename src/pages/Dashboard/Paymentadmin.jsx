@@ -8,7 +8,7 @@ const PaymentAdmin = () => {
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                const response = await axios.get('https://y-pearl-nu.vercel.app/payments');
+                const response = await axios.get('http://localhost:5000/payments');
                 setPayments(response.data); // Set the payments state
             } catch (error) {
                 console.error('Error fetching payments:', error);
@@ -21,7 +21,7 @@ const PaymentAdmin = () => {
     // Function to update payment status to 'paid'
     const updatePaymentStatus = async (paymentId) => {
         try {
-            const response = await axios.put(`https://y-pearl-nu.vercel.app/payment/admin/${paymentId}`, { status: 'paid' });
+            const response = await axios.put(`http://localhost:5000/payment/admin/${paymentId}`, { status: 'paid' });
             console.log(response.data.message);  // Log success message
             // Update the payment status in the local state after the update
             setPayments((prevPayments) =>

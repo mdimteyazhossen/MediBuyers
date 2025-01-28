@@ -54,7 +54,7 @@ const DetailsModal = ({ isOpen, closeModal, medicine }) => {
                     >
                         Close
                     </button>
-                    <button className='mt-4 px-4 py-2 bg-gray-700 text-white rounded-lg text-lg font-bold w-full'>Select</button>
+                    {/* <button className='mt-4 px-4 py-2 bg-gray-700 text-white rounded-lg text-lg font-bold w-full'>Select</button> */}
                 </div>
             </div>
         </div>
