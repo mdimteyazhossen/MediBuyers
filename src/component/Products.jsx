@@ -29,7 +29,8 @@ const Products = ({ categorydata }) => {
                 drugName: medicine.drugName,
                 manufacturer: medicine.manufacturer,
                 price: medicine.price,
-                quantity:1
+                quantity:1,
+                seller:medicine.email || 'Admin'
             }
             axiosSecure.post('/carts', cartItem)
                 .then(res => {

@@ -25,7 +25,7 @@ const Signup = () => {
         }
         axiosPublic.post('/users', userInfo)
           .then(res => {
-            if (res.data.insertedId) {
+            if (res.inserteds.dataId) {
               navigate('/')
             }
           })

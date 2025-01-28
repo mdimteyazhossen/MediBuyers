@@ -62,6 +62,23 @@ const Checkoutfrom = () => {
                 console.log('transaction id', paymentIntent.id)
                 setTransactionId(paymentIntent.id)
             }
+            //send data is database
+            cart.map((carts, index) => {
+                const payment = {
+                    buyerEmail: user.email,
+                    seller: carts?.seller || 'Admin',
+                    transactionId: paymentIntent.id,
+                    medi: carts.drugName,
+                    price: carts.price,
+                    quantity: carts.quantity,
+                    status: 'pending',
+                    date: new Date(),
+                    cartId: carts._id
+                }
+                const res = axiosSecure.post('/payments', payment);
+
+            })
+
 
         }
 

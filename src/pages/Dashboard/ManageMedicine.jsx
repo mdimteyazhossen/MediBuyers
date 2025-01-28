@@ -31,7 +31,7 @@ const ManageMedicine = () => {
   const [categories, setCategory] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/allcategory')
+    fetch('https://y-pearl-nu.vercel.app/allcategory')
       .then(res => res.json())
       .then(data => {
         const categoryNames = data.map(item => item.category);
@@ -40,7 +40,7 @@ const ManageMedicine = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/medicine/${user.email}`)
+    fetch(`https://y-pearl-nu.vercel.app/medicine/${user.email}`)
       .then(res => res.json())
       .then(data => {
         setMedicines(data);

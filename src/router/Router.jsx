@@ -1,6 +1,6 @@
 import {
-    createBrowserRouter,
-  } from "react-router-dom";
+  createBrowserRouter,
+} from "react-router-dom";
 import Layout from "../layout/Layout";
 import Home from "../pages/Home";
 import Shop from "../pages/Shop";
@@ -15,63 +15,93 @@ import ManageUsers from "../pages/Dashboard/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import ManageMedicine from "../pages/Dashboard/ManageMedicine";
 import Checkout from "../pages/Dashboard/Checkout";
-  
+import PaymentUser from "../pages/Dashboard/PaymentUser";
+import Paymentseller from "../pages/Dashboard/Paymentseller";
+import Paymentadmin from "../pages/Dashboard/Paymentadmin";
+import Salesreport from "../pages/Dashboard/Salesreport";
+import InvoicePage from "../pages/Dashboard/Invoice";
+import Categoryadmin from "../pages/Dashboard/Categoryadmin";
+
 
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout/>,
-      children:[
-        {
-            path:'/',
-            element:<Home/>
-        },
-        {
-            path:'/shop',
-            element:<Shop/>
-        },
-        {
-            path:'login',
-            element:<Login/>
-        },
-        {
-            path:'signup',
-            element:<Signup/>
-        },
-        {
-            path:'secret',
-            element:<PrivateRoute><Secret/></PrivateRoute>
-        },
-        {
-            path:'/category/:category',
-            element:<CategoryData/>
-        }
-      ]
-    },
-    {
-      path: "/dashboard",
-      element: <PrivateRoute><Dashboard/></PrivateRoute>,
-      children:[
-        {
-            path:'cart',
-            element:<Cart/>
-        },
-        {
-            path:'manageusers',
-            element:<AdminRoute><ManageUsers/></AdminRoute>
-        },
-        {
-            path:'managemedicine',
-            element:<ManageMedicine/>
-        },
-        {
-            path:'payment',
-            element:<Checkout/>
-        },
-        
-      ]
-    },
-  ]);
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/shop',
+        element: <Shop />
+      },
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'signup',
+        element: <Signup />
+      },
+      {
+        path: 'secret',
+        element: <PrivateRoute><Secret /></PrivateRoute>
+      },
+      {
+        path: '/category/:category',
+        element: <CategoryData />
+      }
+    ]
+  },
+  {
+    path: "/dashboard",
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    children: [
+      {
+        path: 'cart',
+        element: <Cart />
+      },
+      {
+        path: 'manageusers',
+        element: <AdminRoute><ManageUsers /></AdminRoute>
+      },
+      {
+        path: 'managemedicine',
+        element: <ManageMedicine />
+      },
+      {
+        path: 'payment',
+        element: <Checkout />
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentUser />
+      },
+      {
+        path: 'paymentseller',
+        element: <Paymentseller />
+      },
+      {
+        path: 'paymentadmin',
+        element: <Paymentadmin />
+      },
+      {
+        path: 'salesreport',
+        element: <Salesreport />
+      },
+      {
+        path: 'invoice',
+        element: <InvoicePage />
+      },
+      {
+        path: 'categorymanage',
+        element:<Categoryadmin/>
+      },
+
+    ]
+  },
+]);
 
 export default router;
