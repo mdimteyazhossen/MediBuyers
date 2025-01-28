@@ -12,7 +12,7 @@ const Categoryadmin = () => {
   // Fetch categories from backend
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('https://y-pearl-nu.vercel.app/allcategory');
+      const response = await axios.get('http://localhost:5000/allcategory');
       setCategories(response.data);
     } catch (error) {
       setToastMessage({ type: 'error', message: 'Failed to fetch categories' });
@@ -25,16 +25,16 @@ const Categoryadmin = () => {
 
   // Add or Edit category
   const handleSaveCategory = async () => {
-    const categoryData = { categoryName, categoryImage };
+    const categoryData = { category: categoryName, image: categoryImage };  // Match backend field names
 
     try {
       if (editCategory) {
         // Update existing category
-        await axios.put(`https://y-pearl-nu.vercel.app/allcategory/${editCategory._id}`, categoryData);
+        await axios.put(`http://localhost:5000/allcategory/${editCategory._id}`, categoryData);
         setToastMessage({ type: 'success', message: 'Category updated successfully!' });
       } else {
         // Add new category
-        await axios.post('https://y-pearl-nu.vercel.app/allcategory', categoryData);
+        await axios.post('http://localhost:5000/allcategory', categoryData);
         setToastMessage({ type: 'success', message: 'Category added successfully!' });
       }
       setShowModal(false);
@@ -51,7 +51,7 @@ const Categoryadmin = () => {
   const handleDeleteCategory = async (id) => {
     if (window.confirm('Are you sure you want to delete this category?')) {
       try {
-        await axios.delete(`https://y-pearl-nu.vercel.app/allcategory/${id}`);
+        await axios.delete(`http://localhost:5000/allcategory/${id}`);
         setToastMessage({ type: 'success', message: 'Category deleted successfully!' });
         fetchCategories();
       } catch (error) {
@@ -63,8 +63,8 @@ const Categoryadmin = () => {
   // Open modal for add/edit category
   const openModal = (category = null) => {
     if (category) {
-      setCategoryName(category.categoryName);
-      setCategoryImage(category.categoryImage);
+      setCategoryName(category.category);
+      setCategoryImage(category.image);
       setEditCategory(category);
     } else {
       setCategoryName('');

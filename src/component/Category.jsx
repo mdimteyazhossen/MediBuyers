@@ -5,7 +5,7 @@ const Category = () => {
   const [categoryData , setCategory] = useState([])
   const [loading , setLoading] = useState(true);
    useEffect(()=>{
-          fetch('https://y-pearl-nu.vercel.app/allcategory')
+          fetch('http://localhost:5000/allcategory')
           .then(res => res.json())
           .then(data =>{
               setCategory(data);

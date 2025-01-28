@@ -21,6 +21,7 @@ import Paymentadmin from "../pages/Dashboard/Paymentadmin";
 import Salesreport from "../pages/Dashboard/Salesreport";
 import InvoicePage from "../pages/Dashboard/Invoice";
 import Categoryadmin from "../pages/Dashboard/Categoryadmin";
+import { Helmet } from "react-helmet";
 
 
 
@@ -31,19 +32,43 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <>
+          <Helmet>
+            <title>Home | MediBuyers</title>
+            <meta name="description" content="Welcome to the home page of MediBuyers" />
+          </Helmet>
+          <Home />
+        </>
       },
       {
         path: '/shop',
-        element: <Shop />
+        element: <>
+          <Helmet>
+            <title>Shop | MediBuyers</title>
+            <meta name="description" content="Browse our collection of products on MediBuyers" />
+          </Helmet>
+          <Shop />
+        </>
       },
       {
         path: 'login',
-        element: <Login />
+        element: <>
+          <Helmet>
+            <title>Login | MediBuyers</title>
+            <meta name="description" content="Login to your MediBuyers account" />
+          </Helmet>
+          <Login />
+        </>
       },
       {
         path: 'signup',
-        element: <Signup />
+        element: <>
+          <Helmet>
+            <title>Sign Up | MediBuyers</title>
+            <meta name="description" content="Create a new account on MediBuyers" />
+          </Helmet>
+          <Signup />
+        </>
       },
       {
         path: 'secret',
@@ -51,7 +76,13 @@ const router = createBrowserRouter([
       },
       {
         path: '/category/:category',
-        element: <CategoryData />
+        element: <>
+          <Helmet>
+            <title>Category  | MediBuyers</title>
+            <meta name="description" content={`Browse products in the category`} />
+          </Helmet>
+          <CategoryData />
+        </>
       }
     ]
   },
@@ -61,7 +92,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'cart',
-        element: <Cart />
+        element: <>
+          <Helmet>
+            <title>Cart | MediBuyers</title>
+            <meta name="description" content="View the items in your cart" />
+          </Helmet>
+          <Cart />
+        </>
       },
       {
         path: 'manageusers',
@@ -69,37 +106,84 @@ const router = createBrowserRouter([
       },
       {
         path: 'managemedicine',
-        element: <ManageMedicine />
+        element: <>
+          <Helmet>
+            <title>Manage Medicine | MediBuyers</title>
+            <meta name="description" content="Manage the available medicines in your store" />
+          </Helmet>
+          <ManageMedicine />
+        </>
       },
       {
         path: 'payment',
-        element: <Checkout />
+        element: <>
+          <Helmet>
+            <title>Payment | MediBuyers</title>
+            <meta name="description" content="Proceed with your payment for the items" />
+          </Helmet>
+          <Checkout />
+        </>
       },
       {
         path: 'paymentHistory',
-        element: <PaymentUser />
+        element: <>
+          <Helmet>
+            <title>Payment History | MediBuyers</title>
+            <meta name="description" content="View your payment history on MediBuyers" />
+          </Helmet>
+          <PaymentUser />
+        </>
       },
       {
         path: 'paymentseller',
-        element: <Paymentseller />
+        element: <>
+          <Helmet>
+            <title>Seller Payments | MediBuyers</title>
+            <meta name="description" content="Manage your payments as a seller on MediBuyers" />
+          </Helmet>
+          <Paymentseller />
+        </>
       },
       {
         path: 'paymentadmin',
-        element: <Paymentadmin />
+        element: <>
+          <Helmet>
+            <title>Payment Admin | MediBuyers</title>
+            <meta name="description" content="Admin panel for managing payments on MediBuyers" />
+          </Helmet>
+          <Paymentadmin />
+        </>
       },
       {
         path: 'salesreport',
-        element: <Salesreport />
+        element: <>
+          <Helmet>
+            <title>Sales Report Admin | MediBuyers</title>
+            <meta name="description" content="View sales reports in the admin panel" />
+          </Helmet>
+          <Salesreport />
+        </>
       },
       {
         path: 'invoice',
-        element: <InvoicePage />
+        element: <>
+          <Helmet>
+            <title>Invoice | MediBuyers</title>
+            <meta name="description" content="View your invoice for purchases made on MediBuyers" />
+          </Helmet>
+          <InvoicePage />
+        </>
       },
       {
         path: 'categorymanage',
-        element:<Categoryadmin/>
-      },
-
+        element: <>
+          <Helmet>
+            <title>Category Management | MediBuyers</title>
+            <meta name="description" content="Manage the categories of products in your store" />
+          </Helmet>
+          <Categoryadmin />
+        </>
+      }
     ]
   },
 ]);

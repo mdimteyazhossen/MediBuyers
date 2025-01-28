@@ -8,7 +8,7 @@ const InvoicePage = () => {
 
   // Fetch invoice data from backend
   useEffect(() => {
-    fetch(`https://y-pearl-nu.vercel.app/payments/${user.email}`)
+    fetch(`http://localhost:5000/payments/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched Invoice Data: ", data); // Debugging line to check data

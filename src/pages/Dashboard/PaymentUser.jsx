@@ -5,7 +5,7 @@ const PaymentUser = () => {
     const { user } = useAuth();
     const [payment, setPayment] = useState([])
     useEffect(() => {
-        fetch(`https://y-pearl-nu.vercel.app/payments/${user.email}`)
+        fetch(`http://localhost:5000/payments/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setPayment(data);

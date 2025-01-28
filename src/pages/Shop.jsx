@@ -6,7 +6,7 @@ const Shop = () => {
     const [categorydata, setCategorydata] = useState([]);
     const [loading , setLoading] = useState(true);
     useEffect(()=>{
-        fetch('https://y-pearl-nu.vercel.app/medicine')
+        fetch('http://localhost:5000/medicine')
         .then(res => res.json())
         .then(data =>{
             setCategorydata(data);
