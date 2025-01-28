@@ -14,6 +14,7 @@ import Cart from "../pages/Dashboard/Cart";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import ManageMedicine from "../pages/Dashboard/ManageMedicine";
+import Checkout from "../pages/Dashboard/Checkout";
   
 
 
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
         {
             path:'managemedicine',
             element:<ManageMedicine/>
+        },
+        {
+            path:'payment',
+            element:<Checkout/>
         },
         
       ]

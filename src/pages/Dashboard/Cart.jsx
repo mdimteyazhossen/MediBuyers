@@ -2,6 +2,7 @@ import { FaChevronDown, FaChevronUp, FaTrashAlt } from "react-icons/fa";
 import useCart from "../../hooks/useCart"
 import useAxios from "../../hooks/useAxios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const [cart, refetch] = useCart()
@@ -83,7 +84,13 @@ const Cart = () => {
             <div>
                 <h2 className="text-4xl">Total Items:{cart.length}</h2>
                 <h2 className="text-4xl">Total Price:{totalPrice}</h2>
-                <button className="btn px-5">Check Out</button>
+                {cart.length ?
+                    <Link to='/dashboard/payment'>
+                        <button className="btn px-5">Check Out</button>
+                    </Link>
+                    :
+                    <button disabled className="btn px-5">Check Out</button>
+                }
             </div>
             <div className="overflow-x-auto lg:w-4/5 mx-auto">
                 <table className="table overflow-x-auto">

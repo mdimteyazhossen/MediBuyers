@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAxios from '../../hooks/useAxios';
+import DetailsModal from '../../component/DetailsModal';
+import Swal from 'sweetalert2';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -112,6 +114,7 @@ const ManageMedicine = () => {
             timer: 1500
           });
         }
+        closeModal()
       }
 
     } catch (error) {
@@ -120,8 +123,32 @@ const ManageMedicine = () => {
   };
 
   const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
+  const closeModal = () => {
+    setMedicine({
+      drugName: '',
+      manufacturer: '',
+      image: null,
+      description: '',
+      consumeType: 'Oral',
+      expiryDate: '',
+      price: '',
+      disclaimer: '',
+      category: '',
+      countInStock: 0,
+      discount: 0,
+      email: `${user.email}`,
+    })
+    setModalOpen(false)
+  };
+  const [isModalOpen, stModalOpen] = useState(false);
+  const [medicinei, setDetailsData] = useState([]);
+  const opeModal = (e) => {
+    stModalOpen(true);
+    setDetailsData(e);
+  }
+  const closModal = () => {
+    stModalOpen(false);
+  }
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-xl font-semibold mb-4">Manage Medicines</h2>
@@ -153,13 +180,14 @@ const ManageMedicine = () => {
               <td>{med.discount}%</td>
               <td>{med.email}</td>
               <td>
-                <button className="btn btn-sm btn-warning mr-2">Edit</button>
-                <button className="btn btn-sm btn-error">Delete</button>
+                <button className="btn bg-gray-600 text-white mr-2"
+                  onClick={() => opeModal(med)}>Details</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <DetailsModal isOpen={isModalOpen} closeModal={closModal} medicine={medicinei} />
       {modalOpen && (
         <div className="modal modal-open">
           <div className="modal-box">
